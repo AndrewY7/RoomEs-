@@ -88,7 +88,7 @@ struct LoginView: View {
             }
         }
         .fullScreenCover(isPresented: $presentSheet) {
-            ItemView() //TODO: Change name
+            HomeView() //TODO: Change name
         }
     }
     

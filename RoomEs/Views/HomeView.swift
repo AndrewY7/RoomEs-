@@ -17,7 +17,13 @@ struct HomeView: View {
                         Text("Home")
                     }
             
-                ProfileView()
+                InstructionView()
+                    .tabItem() {
+                        Image(systemName: "questionmark.circle.fill")
+                        Text("About")
+                    }
+                
+                ProfileDetailView(item: Item())
                     .tabItem() {
                         Image(systemName: "person.crop.circle.fill")
                         Text("Profile")

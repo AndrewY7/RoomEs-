@@ -10,7 +10,6 @@ import Firebase
 import FirebaseFirestoreSwift
 
 struct ItemView: View {
-    @EnvironmentObject var itemVM: ItemViewModel
     @FirestoreQuery(collectionPath: "items") var items: [Item]
     @State private var sheetIsPresented = false
     @Environment(\.dismiss) private var dismiss
@@ -62,7 +61,6 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             ItemView()
-                .environmentObject(ItemViewModel())
         }
     }
 }

@@ -6,21 +6,22 @@
 //
 
 import SwiftUI
+import FirebaseFirestoreSwift
 import Firebase
+import FirebaseFirestore
 
 struct ItemDetailView: View {
     @EnvironmentObject var itemVM: ItemViewModel
+    @FirestoreQuery(collectionPath: "items") var comments: [Comment]
     @State var item: Item
-    @State var postedByThisUser = false
+    @State private var showCommentViewSheet = false
+    @State private var showingAsSheet = false
+    @State private var showSaveAlert = false
     @Environment(\.dismiss) private var dismiss
+    var previewRunning = false
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Add a New Listing")
-                .padding(.bottom)
-                .bold()
-                .font(.largeTitle)
-            
             Group {
                 HStack(alignment: .top) {
                     Text("Item Name:")
@@ -52,7 +53,6 @@ struct ItemDetailView: View {
                     
                 }
                 
-                //TODO: Add stepper for quantity
                 HStack {
                     Text("Listing/Request:")
                         .bold()
@@ -68,42 +68,107 @@ struct ItemDetailView: View {
                 }
             }
             
-            AsyncImage(url:URL(string: "https://m.media-amazon.com/images/I/81PhWhriE+L._AC_UF894,1000_QL80_.jpg")) { image in
-                image
-                    .resizable()
-                    .scaledToFit()
-                    .cornerRadius(15)
-                    .shadow(radius:15)
-            } placeholder: {
-                Image(systemName: "photo")
-                    .resizable()
-                    .scaledToFit()
+            HStack {
+                Text("Comments")
+                    .font(.title2)
+                    .bold()
+                Spacer()
+                Button("+") {
+                    if item.id == nil {
+                        showSaveAlert.toggle()
+                    } else {
+                        showCommentViewSheet.toggle()
+                    }
+                }
+                .buttonStyle(.borderedProminent)
+                .bold()
+                .tint(.blue)
             }
+            
+            List {
+                Section {
+                    ForEach(comments) { comment in
+                        NavigationLink {
+                            CommentView(item: item, comment: comment)
+                        } label : {
+                            CommentRowView(comment: comment)
+                        }
+                    }
+                }
+            }
+            .listStyle(.plain)
             
             Spacer()
         }
-        .disabled(!postedByThisUser)
         .font(.title2)
         .padding()
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(item.id == nil)
+        .navigationBarBackButtonHidden(showingAsSheet)
         .onAppear {
-            if item.reviewer == Auth.auth().currentUser?.email {
-                postedByThisUser = true
+            if !previewRunning && item.id != nil {
+                $comments.path = "item/\(item.id ?? "")/comments"
+            } else {
+                showingAsSheet = true
             }
         }
-        .navigationBarBackButtonHidden(postedByThisUser)
         .toolbar {
-            if postedByThisUser {
-                
+            if showingAsSheet {
+                if item.id == nil && showingAsSheet {
+                    ToolbarItem(placement: .cancellationAction) {
+                        Button("Cancel") {
+                            dismiss()
+                        }
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button("Save") {
+                            Task {
+                                let success = await itemVM.saveItem(item: item)
+                                if success {
+                                    dismiss()
+                                } else {
+                                    print("😡 DANG: Error saving item!")
+                                }
+                            }
+                            dismiss()
+                        }
+                    }
+                }
+            } else if showingAsSheet && item.id != nil {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Done") {
+                        dismiss()
+                    }
+                }
             }
+        }
+        .sheet(isPresented: $showCommentViewSheet) {
+            NavigationStack {
+                CommentView(item: item, comment: Comment())
+            }
+        }
+        .alert("Cannot Comment Unless It is Saved", isPresented: $showSaveAlert) {
+            Button("Cancel", role: .cancel) {}
+            Button("Save", role: .none) {
+                Task {
+                    let success = await itemVM.saveItem(item: item)
+                    item = itemVM.item
+                    if success {
+                        $comments.path = "items/\(item.id ?? "")/comments"
+                        showCommentViewSheet.toggle()
+                    } else {
+                        print("😡 Dang! Error saving spot!")
+                    }
+                }
+            }
+        } message: {
+            Text("Would you like to save this alert first so that you can enter a comment?")
         }
     }
 }
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ItemDetailView(item: Item())
+        ItemDetailView(item: Item(), previewRunning: true)
             .environmentObject(ItemViewModel())
     }
 }
