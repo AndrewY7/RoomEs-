@@ -36,7 +36,7 @@ class CommentViewModel: ObservableObject {
                 print("🐣 Data added successfully!")
                 return true
             } catch {
-                print("😡 ERROR: Could not create a new review in 'reviews' \(error.localizedDescription)")
+                print("😡 ERROR: Could not create a new comment in 'comments' \(error.localizedDescription)")
                 return false
             }
         }

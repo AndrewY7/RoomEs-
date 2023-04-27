@@ -20,25 +20,13 @@ struct ItemView: View {
                 NavigationLink {
                     ItemDetailView(item: item)
                 } label: {
-                    Text(item.name)
-                        .font(.title2)
+                    ItemRowView(item: item)
                 }
             }
             .listStyle(.plain)
             .navigationTitle("RoomEs Marketplace")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Sign Out") {
-                        do {
-                            try Auth.auth().signOut()
-                            print("🪵➡️ Log out successful!")
-                            dismiss()
-                        } catch {
-                            print("😡 ERROR: Could not sign out!")
-                        }
-                    }
-                }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         sheetIsPresented.toggle()

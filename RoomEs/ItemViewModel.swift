@@ -38,5 +38,4 @@ class ItemViewModel: ObservableObject {
             }
         }
     }
-    
 }

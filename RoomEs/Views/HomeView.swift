@@ -29,7 +29,6 @@ struct HomeView: View {
                         Text("Profile")
                     }
             }
-            .toolbarBackground(.black, for: .tabBar)
         }
     }
 }
