@@ -35,6 +35,10 @@ struct HomeView: View {
                         Text("Profile")
                     }
             }
+            .onAppear() {
+                UITabBar.appearance().backgroundColor = .systemGray6
+            }
+            .tint(.blue)
         }
     }
 }

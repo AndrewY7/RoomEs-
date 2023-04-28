@@ -10,6 +10,7 @@ import FirebaseFirestoreSwift
 import Firebase
 import FirebaseFirestore
 import Combine
+import Foundation
 
 struct ItemDetailView: View {
     @EnvironmentObject var itemVM: ItemViewModel
@@ -76,35 +77,37 @@ struct ItemDetailView: View {
                 }
             }
             
-            HStack {
-                Text("Comments")
-                    .font(.title2)
-                    .bold()
-                Spacer()
-                Button("+") {
-                    if item.id == nil {
-                        showSaveAlert.toggle()
-                    } else {
-                        showCommentViewSheet.toggle()
+            Group {
+                HStack {
+                    Text("Comments")
+                        .font(.title2)
+                        .bold()
+                    Spacer()
+                    Button("+") {
+                        if item.id == nil {
+                            showSaveAlert.toggle()
+                        } else {
+                            showCommentViewSheet.toggle()
+                        }
                     }
+                    .buttonStyle(.borderedProminent)
+                    .bold()
+                    .tint(.blue)
                 }
-                .buttonStyle(.borderedProminent)
-                .bold()
-                .tint(.blue)
-            }
-            
-            List {
-                Section {
-                    ForEach(comments) { comment in
-                        NavigationLink {
-                            CommentView(item: item, comment: Comment())
-                        } label : {
-                            Text("\(comment.body)")
+                
+                List {
+                    Section {
+                        ForEach(comments) { comment in
+                            NavigationLink {
+                                CommentView(item: item, comment: comment)
+                            } label : {
+//                                CommentRowView(item: item)
+                            }
                         }
                     }
                 }
+                .listStyle(.plain)
             }
-            .listStyle(.plain)
             
             Spacer()
         }
@@ -114,7 +117,7 @@ struct ItemDetailView: View {
         .navigationBarBackButtonHidden(showingAsSheet)
         .onAppear {
             if !previewRunning && item.id != nil {
-                $comments.path = "item/\(item.id ?? "")/comments"
+                $comments.path = "items/\(item.id ?? "")/comments"
             } else {
                 showingAsSheet = true
             }
