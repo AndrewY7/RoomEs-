@@ -9,6 +9,7 @@ import SwiftUI
 import FirebaseFirestoreSwift
 import Firebase
 import FirebaseFirestore
+import Combine
 
 struct ItemDetailView: View {
     @EnvironmentObject var itemVM: ItemViewModel
@@ -36,6 +37,13 @@ struct ItemDetailView: View {
                     TextField("", text: $item.price)
                         .textFieldStyle(.roundedBorder)
                         .padding(.bottom)
+                        .keyboardType(.numberPad)
+                        .onReceive(Just(item.price)) { newValue in
+                            let filtered = newValue.filter { "0123456789".contains($0) }
+                            if filtered != newValue {
+                                item.price = filtered
+                            }
+                        }
                 }
                 
                 Text("Description:")
@@ -89,9 +97,9 @@ struct ItemDetailView: View {
                 Section {
                     ForEach(comments) { comment in
                         NavigationLink {
-                            CommentView(item: item, comment: comment)
+                            CommentView(item: item, comment: Comment())
                         } label : {
-                            CommentRowView(comment: comment)
+                            Text("\(comment.body)")
                         }
                     }
                 }

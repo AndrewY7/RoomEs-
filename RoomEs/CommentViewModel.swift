@@ -32,7 +32,7 @@ class CommentViewModel: ObservableObject {
             }
         } else {
             do {
-                _ = try await db.collection(collectionString).addDocument(data: item.dictionary)
+                _ = try await db.collection(collectionString).addDocument(data: comment.dictionary)
                 print("🐣 Data added successfully!")
                 return true
             } catch {

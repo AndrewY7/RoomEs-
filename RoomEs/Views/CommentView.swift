@@ -76,7 +76,7 @@ struct CommentView: View {
                             if success {
                                 dismiss()
                             } else {
-                                print("😡 ERROR saving data in ReviewView")
+                                print("😡 ERROR saving data in CommentView")
                             }
                         }
                     }

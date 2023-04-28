@@ -23,6 +23,12 @@ struct HomeView: View {
                         Text("About")
                     }
                 
+                UserCommentView(comment: Comment())
+                    .tabItem() {
+                        Image(systemName: "bubble.right.circle.fill")
+                        Text("My Comments")
+                    }
+                
                 ProfileDetailView(item: Item())
                     .tabItem() {
                         Image(systemName: "person.crop.circle.fill")

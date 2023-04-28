@@ -16,7 +16,7 @@ struct ItemView: View {
     
     var body: some View {
         NavigationStack {
-            List(items) { item in
+            List(items.reversed()) { item in
                 NavigationLink {
                     ItemDetailView(item: item)
                 } label: {
@@ -24,7 +24,7 @@ struct ItemView: View {
                 }
             }
             .listStyle(.plain)
-            .navigationTitle("RoomEs Marketplace")
+            .navigationTitle("RoomEs Market")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
