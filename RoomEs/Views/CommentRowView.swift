@@ -12,11 +12,15 @@ struct CommentRowView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(comment.commenter)
-                .font(.title2)
-            Text(comment.body)
-                .font(.callout)
-                .lineLimit(1)
+            HStack {
+                Image(systemName: "text.bubble")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 20, height: 20)
+                
+                Text("Comment by: \(comment.commenter)")
+                    .font(.title2)
+            }
         }
     }
 }

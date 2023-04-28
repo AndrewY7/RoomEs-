@@ -23,12 +23,6 @@ struct HomeView: View {
                         Text("About")
                     }
                 
-                UserCommentView(comment: Comment())
-                    .tabItem() {
-                        Image(systemName: "bubble.right.circle.fill")
-                        Text("My Comments")
-                    }
-                
                 ProfileDetailView(item: Item())
                     .tabItem() {
                         Image(systemName: "person.crop.circle.fill")
@@ -38,7 +32,7 @@ struct HomeView: View {
             .onAppear() {
                 UITabBar.appearance().backgroundColor = .systemGray6
             }
-            .tint(.blue)
+            .tint(Color("appblu"))
         }
     }
 }

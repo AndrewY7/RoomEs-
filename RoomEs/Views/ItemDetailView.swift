@@ -30,6 +30,7 @@ struct ItemDetailView: View {
                         .bold()
                     TextField("", text: $item.name)
                         .textFieldStyle(.roundedBorder)
+                        .disableAutocorrection(true)
                 }
                 
                 HStack(alignment: .top) {
@@ -52,6 +53,7 @@ struct ItemDetailView: View {
                 TextField("", text: $item.description)
                     .textFieldStyle(.roundedBorder)
                     .padding(.bottom)
+                    .disableAutocorrection(true)
                 
                 HStack(alignment: .top) {
                     Text("Location:")
@@ -59,7 +61,7 @@ struct ItemDetailView: View {
                     TextField("", text: $item.location)
                         .textFieldStyle(.roundedBorder)
                         .padding(.bottom)
-                    
+                        .disableAutocorrection(true)
                 }
                 
                 HStack {
@@ -101,7 +103,7 @@ struct ItemDetailView: View {
                             NavigationLink {
                                 CommentView(item: item, comment: comment)
                             } label : {
-//                                CommentRowView(item: item)
+                                CommentRowView(comment: comment)
                             }
                         }
                     }

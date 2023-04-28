@@ -13,10 +13,18 @@ struct ItemView: View {
     @FirestoreQuery(collectionPath: "items") var items: [Item]
     @State private var sheetIsPresented = false
     @Environment(\.dismiss) private var dismiss
+    @State private var searchText = ""
+    var filteredItems: [Item] {
+        if searchText.isEmpty {
+            return items
+        } else {
+            return items.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+        }
+    }
     
     var body: some View {
         NavigationStack {
-            List(items.reversed()) { item in
+            List(filteredItems) { item in
                 NavigationLink {
                     ItemDetailView(item: item)
                 } label: {
@@ -35,6 +43,7 @@ struct ItemView: View {
                     }
                 }
             }
+            .searchable(text: $searchText, prompt: "Search Items")
         }
         .sheet(isPresented: $sheetIsPresented) {
             NavigationStack {

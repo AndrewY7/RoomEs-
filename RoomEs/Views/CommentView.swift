@@ -28,7 +28,7 @@ struct CommentView: View {
             .padding(.horizontal)
             .frame(maxWidth: .infinity, alignment: .leading)
             
-            Text(commenterString)
+            Text(self.commenterString)
                 .font(postedByThisUser ? .title2 : .subheadline)
                 .bold(postedByThisUser)
                 .minimumScaleFactor(0.5)
@@ -42,10 +42,6 @@ struct CommentView: View {
                 TextField("comment", text: $comment.body, axis: .vertical)
                     .padding(.horizontal, 6)
                     .frame(maxHeight: .infinity, alignment: .topLeading)
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke(.gray.opacity(0.5), lineWidth: postedByThisUser ? 2 : 0.3)
-                    }
             }
             .disabled(!postedByThisUser)
             .padding(.horizontal)

@@ -26,12 +26,12 @@
 		595BF63729FA38B0003210BA /* ProfileDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595BF63629FA38B0003210BA /* ProfileDetailView.swift */; };
 		595BF63929FAC321003210BA /* CommentRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595BF63829FAC321003210BA /* CommentRowView.swift */; };
 		595BF63F29FB2063003210BA /* ItemRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595BF63E29FB2063003210BA /* ItemRowView.swift */; };
-		595BF64129FB4399003210BA /* UserCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595BF64029FB4399003210BA /* UserCommentView.swift */; };
 		59A039A229F8384700203693 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A039A129F8384700203693 /* Item.swift */; };
 		59A039A429F8385900203693 /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A039A329F8385900203693 /* ItemViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5911335829FB977200AC74F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5942416029F7855500E329AE /* RoomEs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoomEs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5942416329F7855500E329AE /* RoomEsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomEsApp.swift; sourceTree = "<group>"; };
 		5942416729F7855600E329AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -48,7 +48,6 @@
 		595BF63629FA38B0003210BA /* ProfileDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailView.swift; sourceTree = "<group>"; };
 		595BF63829FAC321003210BA /* CommentRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRowView.swift; sourceTree = "<group>"; };
 		595BF63E29FB2063003210BA /* ItemRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRowView.swift; sourceTree = "<group>"; };
-		595BF64029FB4399003210BA /* UserCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCommentView.swift; sourceTree = "<group>"; };
 		59A039A129F8384700203693 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		59A039A329F8385900203693 /* ItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -87,6 +86,7 @@
 		5942416229F7855500E329AE /* RoomEs */ = {
 			isa = PBXGroup;
 			children = (
+				5911335829FB977200AC74F5 /* Info.plist */,
 				5942416329F7855500E329AE /* RoomEsApp.swift */,
 				59A039A129F8384700203693 /* Item.swift */,
 				595BF62E29F9E989003210BA /* Comment.swift */,
@@ -119,7 +119,6 @@
 				5942417E29F79DE200E329AE /* ItemDetailView.swift */,
 				595BF63229F9FB2B003210BA /* CommentView.swift */,
 				595BF63829FAC321003210BA /* CommentRowView.swift */,
-				595BF64029FB4399003210BA /* UserCommentView.swift */,
 				595BF63E29FB2063003210BA /* ItemRowView.swift */,
 			);
 			path = Views;
@@ -215,7 +214,6 @@
 				595BF63729FA38B0003210BA /* ProfileDetailView.swift in Sources */,
 				595BF62B29F9E88A003210BA /* ItemView.swift in Sources */,
 				5942416429F7855500E329AE /* RoomEsApp.swift in Sources */,
-				595BF64129FB4399003210BA /* UserCommentView.swift in Sources */,
 				595BF62F29F9E989003210BA /* Comment.swift in Sources */,
 				595BF63129F9EA39003210BA /* CommentViewModel.swift in Sources */,
 				595BF63329F9FB2B003210BA /* CommentView.swift in Sources */,
@@ -351,9 +349,9 @@
 				DEVELOPMENT_TEAM = 97B92788YZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RoomEs/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -380,9 +378,9 @@
 				DEVELOPMENT_TEAM = 97B92788YZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RoomEs/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
